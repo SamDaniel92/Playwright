@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@helpers/*": ["helpers/*"]
+    }
+  },
+  "include": [
+    "tests/**/*",
+    "pages/**/*",
+    "helpers/**/*",
+    "config/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
