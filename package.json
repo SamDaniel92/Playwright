@@ -1,0 +1,19 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "description": "Playwright Test Automation Framework",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prebuild": "rimraf dist/",
+    "test": "npx playwright test --headed --debug --config=./config/playwright.config.ts",
+    "test:e2e": "npx playwright test --grep @e2e --headed",
+    "test:regression": "npx playwright test --grep @regression --headed",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.9.0",
+    "typescript": "^5.2.2",
+    "rimraf": "^5.0.1"
+  }
+}
