@@ -1,7 +1,7 @@
 export const TestData = {
   airports: {
-    Mumbai: 'Mumbai',
-    Delhi: 'Delhi',
+    From_Loc: 'Mumbai',
+    To_Loc: 'Delhi',
     LHR: 'LHR',
     JFK: 'JFK'
   },
