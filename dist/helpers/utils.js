@@ -3,17 +3,22 @@
 // Utility methods ONLY for random data, date formatting, etc.
 // DO NOT add page-specific or business logic here
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatDate = formatDate;
+exports.addDaysToDate = exports.formatDate = void 0;
 exports.generateRandomString = generateRandomString;
-exports.addDaysToDate = addDaysToDate;
-function formatDate(date) {
-    return date.toISOString().split('T')[0];
-}
+const formatDate = (date) => {
+    return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    }).replace(/\//g, '-');
+};
+exports.formatDate = formatDate;
 function generateRandomString(length) {
     return Math.random().toString(36).substring(2, length + 2);
 }
-function addDaysToDate(days) {
+const addDaysToDate = (days) => {
     const date = new Date();
     date.setDate(date.getDate() + days);
     return date;
-}
+};
+exports.addDaysToDate = addDaysToDate;

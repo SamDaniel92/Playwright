@@ -1,18 +1,26 @@
-import { test, expect } from './fixtures';
-import { FlightSearchPage } from '@pages/FlightSearchPage';
-import { TestData } from '@helpers/testData';
-import { formatDate, addDaysToDate } from '@helpers/utils';
+import { test, expect, Page } from '@playwright/test';
+import { FlightSearchPage } from '../pages/flight-search.page';
+import { TestData } from '../helpers/testData';
 
-test.describe('Flight Booking Flow @e2e @regression', () => {
-  test('should complete end-to-end booking flow', async ({ page }) => {
-    const searchPage = new FlightSearchPage(page);
-    
+test.describe('Flight Booking @e2e', () => {
+  let page: Page;
+  let searchPage: FlightSearchPage;
+
+  test.beforeEach(async ({ page: testPage }) => {
+    page = testPage;
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    searchPage = new FlightSearchPage(page);
+  });
+
+  test('should complete flight search', async () => {
     await searchPage.searchFlight(
-      TestData.airports.LHR,
-      TestData.airports.JFK,
-      formatDate(addDaysToDate(7))
+      TestData.airports.Mumbai,
+      TestData.airports.Delhi,
+      '25-12-2025'
     );
-    
-    // Add booking flow steps here
+
+    const results = await searchPage.getSearchResults();
+    await expect(results.length).toBeGreaterThan(0);
   });
 });

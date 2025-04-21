@@ -2,12 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.expect = exports.test = void 0;
 const test_1 = require("@playwright/test");
-// Extend base test with custom fixtures
 exports.test = test_1.test.extend({
-    // Override default page fixture to ensure all tests start from homepage
-    page: async ({ page }, use) => {
-        await page.goto('/'); // Uses baseURL from playwright.config.ts
+    page: async ({ browser }, use) => {
+        console.log('Launching browser...');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto('/');
         await use(page);
+        await context.close();
     },
 });
 var test_2 = require("@playwright/test");

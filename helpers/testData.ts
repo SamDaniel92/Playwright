@@ -1,19 +1,13 @@
 export const TestData = {
   airports: {
-    LHR: 'London Heathrow',
-    JFK: 'New York JFK',
-    SFO: 'San Francisco'
+    Mumbai: 'Mumbai',
+    Delhi: 'Delhi',
+    LHR: 'LHR',
+    JFK: 'JFK'
   },
   passengers: {
-    adult: {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com'
-    }
+    adults: '2',
+    children: '1'
   },
-  creditCard: {
-    number: '4111111111111111',
-    expiry: '12/25',
-    cvv: '123'
-  }
+  class: 'Economy'
 };

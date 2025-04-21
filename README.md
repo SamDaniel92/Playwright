@@ -36,6 +36,19 @@ npm run test:regression
 - `@e2e`: End-to-end flow tests
 - `@regression`: Regression test suite
 
+## Test Scenarios
+
+### Flight Booking Tests
+- One-way flight search
+  - Verifies the basic flow of searching for a one-way flight
+  - Includes passenger selection and travel class
+  - Tagged as @e2e
+
+## Page Objects
+
+The framework uses Page Object Model pattern:
+- `pages/flight-booking.page.ts`: Handles flight search form interactions
+
 ## Generate Report
 
 ```bash

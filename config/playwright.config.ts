@@ -14,9 +14,9 @@ const config: PlaywrightTestConfig = {
         headless: false,
         channel: 'chrome',
         viewport: null,  // Set to null to allow maximize
-        baseURL: 'https://flightsearchui-frbcdzdbcgc5gtgw.eastus-01.azurewebsites.net/',
+        baseURL: process.env.BASE_URL || 'https://flightsearchui-frbcdzdbcgc5gtgw.eastus-01.azurewebsites.net/',
         screenshot: 'only-on-failure',
-        video: 'retain-on-failure',
+        video: 'off', // Changed from 'retain-on-failure' to 'off'
         launchOptions: {
           args: [
             '--start-maximized',
@@ -29,9 +29,8 @@ const config: PlaywrightTestConfig = {
             '--ignore-certificate-errors'
           ],
           slowMo: 50,
-          devtools: true, // Enable DevTools for debugging
-          timeout: 30000,
-          executablePath: process.env.CHROME_PATH // Optional: Use specific Chrome installation
+          devtools: false, // Changed from true to false
+          timeout: 30000
         },
         trace: {
           mode: 'on-first-retry',
@@ -56,4 +55,3 @@ const config: PlaywrightTestConfig = {
 };
 
 export default config;
-//Test
