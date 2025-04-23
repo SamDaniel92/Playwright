@@ -1,13 +1,19 @@
 import { Page } from '@playwright/test';
 import { BasePage } from './base.page';
+import { FlightSearchPage } from './flight-search.page';
 import { selectors } from '../helpers/Objects';
 
-export class FlightSearchPage extends BasePage {
-    selectors = selectors.flightSearchPage;
+export class TestPage extends FlightSearchPage {
+    
+    // ONE clear selector object per page combining multiple sets
+    selectors = {
+        ...selectors.flightSearchPage,   // Spread flightSearch selectors
+        ...selectors.TestPage         // Spread Testpage selectors
+    };
+    
     constructor(page: Page) {
         super(page);
-    }
-
+    }   
     async searchFlight(origin: string, destination: string, date: string) {
         await this.click(this.selectors.tripOneWay);
         await this.fill(this.selectors.originInput, origin);
@@ -15,11 +21,9 @@ export class FlightSearchPage extends BasePage {
         await this.fill(this.selectors.dateInput, date);
         await this.click(this.selectors.searchButton);
     }
-
-    /* async getSearchResults(): Promise<string[]> {
-         const results = await this.page.$$eval('.search-result', elements =>
-             elements.map(el => el.textContent || '')
-         );
-         return results;
-     }*/
+    async fillCardDetails(cardNumber: string, cvv: string) {
+        await this.fill(this.selectors.cardNumberInput, cardNumber);
+        await this.fill(this.selectors.cvvInput, cvv);
+    }
+    
 }
